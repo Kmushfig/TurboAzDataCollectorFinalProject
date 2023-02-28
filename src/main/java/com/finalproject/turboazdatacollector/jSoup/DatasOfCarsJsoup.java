@@ -26,8 +26,10 @@ public class DatasOfCarsJsoup {
 
             for (Element product : productName) {
 
-                datasOfCarsDTO.setMakeAndModelName(String.valueOf(product.getElementsByClass("products-i__name products-i__bottom-text")));
-                datasOfCarsDTO.setPrice();
+                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
+                datasOfCarsDTO.setPrice(Integer.parseInt(product.getElementsByClass("products-i__price products-i__bottom-text").text()));
+                datasOfCarsDTO.setDateTimeAndPlace(product.getElementsByClass("products-i__datetime").text());
+
                 datasOfCarsDTO.setYear(Arrays.stream(Arrays.stream(product.getElementsByClass("products-i__attributes products-i__bottom-text")
                         .get(0)
                         .text().split(" ,")).toArray();
