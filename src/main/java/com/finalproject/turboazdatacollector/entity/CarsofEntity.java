@@ -15,8 +15,10 @@ public class CarsofEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String makeName;
-    private String modelName;
+    private int makeId;
+    //    private int modelId;
+    private String makeAndModelName;
+    //    private String modelName;
     private int year;
     private int price;
     private int odometer;

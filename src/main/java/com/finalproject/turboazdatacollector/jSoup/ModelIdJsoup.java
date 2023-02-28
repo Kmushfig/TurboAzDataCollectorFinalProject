@@ -17,8 +17,8 @@ public class ModelIdJsoup {
 
         ModelIdDTO modelIdDTO = new ModelIdDTO();
 
-        HashMap<String, String> modelIds = new HashMap<>();
-
+//        HashMap<String, String> modelIds = new HashMap<>();
+//
         Document doc = Jsoup.connect("https://turbo.az/").get();
 
         Elements options = doc.getElementsByClass("js-search-select-model").select("option");
