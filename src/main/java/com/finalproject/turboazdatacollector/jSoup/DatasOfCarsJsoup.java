@@ -8,13 +8,11 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
 
 @Service
 public class DatasOfCarsJsoup {
 
-    public void jsoupDatas() throws IOException {
+    public DatasOfCarsDTO jsoupDatas() throws IOException {
 
         DatasOfCarsDTO datasOfCarsDTO = new DatasOfCarsDTO();
 //        HashMap<String, String> carIds = new HashMap<>();
@@ -26,30 +24,31 @@ public class DatasOfCarsJsoup {
 
             for (Element product : productName) {
 
-                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
-                datasOfCarsDTO.setPrice(Integer.parseInt(product.getElementsByClass("products-i__price products-i__bottom-text").text()));
-                datasOfCarsDTO.setDateTimeAndPlace(product.getElementsByClass("products-i__datetime").text());
 
-                datasOfCarsDTO.setYear(Arrays.stream(Arrays.stream(product.getElementsByClass("products-i__attributes products-i__bottom-text")
-                        .get(0)
-                        .text().split(" ,")).toArray();
-
-
-
-//                Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
+                Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
+                Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
+                Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
                 String[] atribittooSplittoo = attributes.get(0).text().split(", ");
                 String year = atribittooSplittoo[0];
                 String engine = atribittooSplittoo[1];
                 String odoMetr = atribittooSplittoo[2];
 
+//                datasOfCarsDTO.setMadelId();  ?????????
+                datasOfCarsDTO.setMakeAndModelName(String.valueOf(carName));
+                datasOfCarsDTO.setYear(year);
+                datasOfCarsDTO.setEngine(engine);
+                datasOfCarsDTO.setOdometer(odoMetr);
+                datasOfCarsDTO.setPrice(String.valueOf(price));
+                datasOfCarsDTO.setDateTimeAndPlace(String.valueOf(dateTimeAndPlace));
 
-
-                Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
-                Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
-
+//                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
+//                datasOfCarsDTO.setPrice((product.getElementsByClass("products-i__price products-i__bottom-text").text()));
+//                datasOfCarsDTO.setDateTimeAndPlace(product.getElementsByClass("products-i__datetime").text());
             }
+//
         }
+        return datasOfCarsDTO;
     }
 
 }

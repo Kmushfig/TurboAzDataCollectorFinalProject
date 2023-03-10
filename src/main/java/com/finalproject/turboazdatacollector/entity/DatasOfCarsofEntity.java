@@ -9,20 +9,18 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CarsofEntity {
+public class DatasOfCarsofEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private int makeId;
-    //    private int modelId;
+    private String madelId;
     private String makeAndModelName;
-    //    private String modelName;
-    private int year;
-    private int price;
-    private int odometer;
-    private double engine;
+    private String year;
+    private String price;
+    private String odometer;
+    private String engine;
     private String dateTimeAndPlace;
 
 

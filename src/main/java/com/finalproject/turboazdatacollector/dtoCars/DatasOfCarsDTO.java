@@ -5,14 +5,12 @@ import lombok.Data;
 @Data
 public class DatasOfCarsDTO {
 
-    private int moldeId;
-//    private int modelId;
+    private String madelId;
     private String makeAndModelName;
-//    private String modelName;
-    private int year;
-    private int price;
-    private int odometer;
-    private double engine;
+    private String year;
+    private String price;
+    private String odometer;
+    private String engine;
     private String dateTimeAndPlace;
 
 
