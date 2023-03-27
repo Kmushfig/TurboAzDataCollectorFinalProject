@@ -5,7 +5,6 @@ import com.finalproject.turboazdatacollector.entity.ModelIdEntity;
 import com.finalproject.turboazdatacollector.jSoup.ModelIdJsoup;
 import com.finalproject.turboazdatacollector.repository.ModelIdRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.io.IOException;
         ModelIdDTO modelIdDTO = modelIdJsoup.jsoupModelId();
 
         ModelIdEntity modelIdEntity = ModelIdEntity.builder()
-                .id(modelIdDTO.getId())
+                .id(modelIdDTO.getModelId())
                 .modelName(modelIdDTO.getModelName())
                 .makeNumber(modelIdDTO.getMakeNumber())
                 .build();
@@ -31,4 +30,6 @@ import java.io.IOException;
         
         return modelIdRepository.save(modelIdEntity);
     }
+
+    String link = "https://turbo.az/autos?q[sort]=&q[make][]= {***}&q[model][]=&q[model][]={***}";
 }

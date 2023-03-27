@@ -8,7 +8,6 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 @Service
 public class ModelIdJsoup {
@@ -26,7 +25,7 @@ public class ModelIdJsoup {
         for (Element carModel : options) {
 
             modelIdDTO.setModelName(carModel.text());
-            modelIdDTO.setId(carModel.val());
+            modelIdDTO.setModelId(carModel.val());
             modelIdDTO.setMakeNumber(Integer.parseInt(carModel.attr("class")));
 
 

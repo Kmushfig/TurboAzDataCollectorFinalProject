@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ModelIdDTO {
 
-    private String id;
+    private String modelId;
     private String modelName;
     private int makeNumber;
 

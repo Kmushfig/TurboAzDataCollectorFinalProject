@@ -16,6 +16,7 @@ public class DatasOfCarsofEntity {
     private int id;
 
     private String madelId;
+    private String makeId;
     private String makeAndModelName;
     private String year;
     private String price;
