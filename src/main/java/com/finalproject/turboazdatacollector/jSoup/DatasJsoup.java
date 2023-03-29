@@ -1,16 +1,24 @@
 package com.finalproject.turboazdatacollector.jSoup;
 
 import com.finalproject.turboazdatacollector.dtoCars.DatasDTO;
+import com.finalproject.turboazdatacollector.entity.ModelEntity;
+import com.finalproject.turboazdatacollector.repository.ModelRepositoryy;
+import org.hibernate.service.spi.InjectService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
 public class DatasJsoup {
+
+    @Autowired
+    private ModelRepositoryy modelRepositoryy;
 
     public DatasDTO jsoupDatas() throws IOException {
 
@@ -26,6 +34,11 @@ public class DatasJsoup {
 
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
+
+                // modeli gətir - bmw, mercedes, sən girib baxırsan model table-də id-si neçədir
+                String modelText = "Bunun turbo az-dan götür";
+                ModelEntity modelEntity = modelRepositoryy.findByModeName(modelText);
+
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
@@ -35,11 +48,12 @@ public class DatasJsoup {
                 String odoMetr = atribittooSplittoo[2];
 
 //                datasOfCarsDTO.setMadelId();  ?????????
-                datasDTO.setMakeAndModelName(String.valueOf(carName));
+                datasDTO.setMakeAndModelName(carName.text());
+                datasDTO.setMadelId(modelEntity);
                 datasDTO.setProductionYear(year);
                 datasDTO.setEngine(engine);
                 datasDTO.setOdometer(odoMetr);
-                datasDTO.setPrice(String.valueOf(price));
+                datasDTO.setPrice("123123");
                 datasDTO.setDateTimeAndPlace(String.valueOf(dateTimeAndPlace));
 
 //                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());

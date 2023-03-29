@@ -15,7 +15,12 @@ public class DatasEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String madelId;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "madel_id")
+    private ModelEntity madel;
+
     private String makeId;
     private String makeAndModelName;
     private String productionYear;
@@ -23,8 +28,4 @@ public class DatasEntity {
     private String odometer;
     private String engine;
     private String dateTimeAndPlace;
-
-
-
-
 }

@@ -13,7 +13,7 @@ public class ModelEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String modelId;
     private String modelName;

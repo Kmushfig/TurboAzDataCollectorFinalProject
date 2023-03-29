@@ -4,6 +4,8 @@ import com.finalproject.turboazdatacollector.dtoCars.DatasDTO;
 import com.finalproject.turboazdatacollector.entity.DatasEntity;
 import com.finalproject.turboazdatacollector.jSoup.DatasJsoup;
 import com.finalproject.turboazdatacollector.repository.DatasRepository;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ public class DatasService {
         DatasDTO datasDTO = datasJsoup.jsoupDatas();
 
         DatasEntity datasEntity = DatasEntity.builder()
-                .madelId(datasDTO.getMadelId())
+                .madel(datasDTO.getMadel())
                 .makeAndModelName(datasDTO.getMakeAndModelName())
                 .productionYear(datasDTO.getProductionYear())
                 .engine(datasDTO.getEngine())
@@ -29,6 +31,11 @@ public class DatasService {
                 .dateTimeAndPlace(datasDTO.getDateTimeAndPlace())
                 .build();
         return datasRepository.save(datasEntity);
+    }
+
+    public List<DatasEntity> findAllByMadelId(Long id) {
+
+        return datasRepository.findAllByMadelId(id);
     }
 
 }
