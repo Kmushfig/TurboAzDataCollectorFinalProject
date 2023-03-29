@@ -1,10 +1,10 @@
 package com.finalproject.turboazdatacollector.repository;
 
-import com.finalproject.turboazdatacollector.entity.DatasOfCarsofEntity;
+import com.finalproject.turboazdatacollector.entity.DatasEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DatasOfCarsRepository extends JpaRepository<DatasOfCarsofEntity, String> {
+public interface DatasRepository extends JpaRepository<DatasEntity, String> {
 
 }

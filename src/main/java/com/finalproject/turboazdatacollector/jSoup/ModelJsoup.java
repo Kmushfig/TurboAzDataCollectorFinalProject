@@ -1,6 +1,6 @@
 package com.finalproject.turboazdatacollector.jSoup;
 
-import com.finalproject.turboazdatacollector.dtoCars.ModelIdDTO;
+import com.finalproject.turboazdatacollector.dtoCars.ModelDTO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class ModelIdJsoup {
+public class ModelJsoup {
 
-    public ModelIdDTO jsoupModelId() throws IOException {
+    public ModelDTO jsoupModelId() throws IOException {
 
-        ModelIdDTO modelIdDTO = new ModelIdDTO();
+        ModelDTO modelDTO = new ModelDTO();
 
 //        HashMap<String, String> modelIds = new HashMap<>();
 //
@@ -24,9 +24,9 @@ public class ModelIdJsoup {
 
         for (Element carModel : options) {
 
-            modelIdDTO.setModelName(carModel.text());
-            modelIdDTO.setModelId(carModel.val());
-            modelIdDTO.setMakeNumber(Integer.parseInt(carModel.attr("class")));
+            modelDTO.setModelName(carModel.text());
+            modelDTO.setModelId(carModel.val());
+            modelDTO.setMakeNumber(Integer.parseInt(carModel.attr("class")));
 
 
 //            String modelName = carModel.text();
@@ -34,7 +34,7 @@ public class ModelIdJsoup {
 //          String makeId = carModel.attr("class");
 
         }
-        return modelIdDTO;
+        return modelDTO;
     }
 
 

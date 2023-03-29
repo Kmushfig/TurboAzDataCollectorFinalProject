@@ -1,6 +1,6 @@
 package com.finalproject.turboazdatacollector.jSoup;
 
-import com.finalproject.turboazdatacollector.dtoCars.DatasOfCarsDTO;
+import com.finalproject.turboazdatacollector.dtoCars.DatasDTO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class DatasOfCarsJsoup {
+public class DatasJsoup {
 
-    public DatasOfCarsDTO jsoupDatas() throws IOException {
+    public DatasDTO jsoupDatas() throws IOException {
 
-        DatasOfCarsDTO datasOfCarsDTO = new DatasOfCarsDTO();
+        DatasDTO datasDTO = new DatasDTO();
 //        HashMap<String, String> carIds = new HashMap<>();
 
         for (int j = 1; j < 2; j++) {
@@ -35,12 +35,12 @@ public class DatasOfCarsJsoup {
                 String odoMetr = atribittooSplittoo[2];
 
 //                datasOfCarsDTO.setMadelId();  ?????????
-                datasOfCarsDTO.setMakeAndModelName(String.valueOf(carName));
-                datasOfCarsDTO.setYear(year);
-                datasOfCarsDTO.setEngine(engine);
-                datasOfCarsDTO.setOdometer(odoMetr);
-                datasOfCarsDTO.setPrice(String.valueOf(price));
-                datasOfCarsDTO.setDateTimeAndPlace(String.valueOf(dateTimeAndPlace));
+                datasDTO.setMakeAndModelName(String.valueOf(carName));
+                datasDTO.setProductionYear(year);
+                datasDTO.setEngine(engine);
+                datasDTO.setOdometer(odoMetr);
+                datasDTO.setPrice(String.valueOf(price));
+                datasDTO.setDateTimeAndPlace(String.valueOf(dateTimeAndPlace));
 
 //                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
 //                datasOfCarsDTO.setPrice((product.getElementsByClass("products-i__price products-i__bottom-text").text()));
@@ -48,7 +48,7 @@ public class DatasOfCarsJsoup {
             }
 //
         }
-        return datasOfCarsDTO;
+        return datasDTO;
     }
 
 }

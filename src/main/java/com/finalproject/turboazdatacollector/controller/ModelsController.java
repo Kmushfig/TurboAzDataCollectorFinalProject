@@ -1,7 +1,7 @@
 package com.finalproject.turboazdatacollector.controller;
 
-import com.finalproject.turboazdatacollector.entity.ModelIdEntity;
-import com.finalproject.turboazdatacollector.service.ModelIdService;
+import com.finalproject.turboazdatacollector.entity.ModelEntity;
+import com.finalproject.turboazdatacollector.service.ModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +13,13 @@ import java.io.IOException;
 @RequestMapping("turbo/")
 @RequiredArgsConstructor
 
-public class ModelIdController {
+public class ModelsController {
 
-    private final ModelIdService modelIdService;
+    private final ModelService modelService;
 
-    @GetMapping("turboaz.data")
-    public ModelIdEntity addNewData() throws IOException {
-        return modelIdService.saveServiceModelId();
+    @GetMapping("turboazdata")
+    public ModelEntity addNewData() throws IOException {
+        return modelService.saveServiceModelId();
     }
 
 
