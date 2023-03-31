@@ -1,21 +1,24 @@
 package com.finalproject.turboazdatacollector.jSoup;
 
 import com.finalproject.turboazdatacollector.dtoCars.DatasDTO;
+import com.finalproject.turboazdatacollector.entity.DatasEntity;
 import com.finalproject.turboazdatacollector.entity.ModelEntity;
+import com.finalproject.turboazdatacollector.repository.DatasRepository;
 import com.finalproject.turboazdatacollector.repository.ModelRepositoryy;
-import org.hibernate.service.spi.InjectService;
+import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
+@RequiredArgsConstructor
 public class DatasJsoup {
+    private final DatasRepository datasRepository;
 
     @Autowired
     private ModelRepositoryy modelRepositoryy;
@@ -49,7 +52,7 @@ public class DatasJsoup {
 
 //                datasOfCarsDTO.setMadelId();  ?????????
                 datasDTO.setMakeAndModelName(carName.text());
-                datasDTO.setMadelId(modelEntity);
+                datasDTO.setModel(modelEntity);
                 datasDTO.setProductionYear(year);
                 datasDTO.setEngine(engine);
                 datasDTO.setOdometer(odoMetr);
@@ -59,6 +62,20 @@ public class DatasJsoup {
 //                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
 //                datasOfCarsDTO.setPrice((product.getElementsByClass("products-i__price products-i__bottom-text").text()));
 //                datasOfCarsDTO.setDateTimeAndPlace(product.getElementsByClass("products-i__datetime").text());
+
+                DatasEntity datasEntity = DatasEntity.builder()
+                        .model(datasDTO.getModel())
+                        .makeAndModelName(datasDTO.getMakeAndModelName())
+                        .productionYear(datasDTO.getProductionYear())
+                        .engine(datasDTO.getEngine())
+                        .odometer(datasDTO.getOdometer())
+                        .price(datasDTO.getPrice())
+                        .dateTimeAndPlace(datasDTO.getDateTimeAndPlace())
+                        .build();
+
+                datasRepository.save(datasEntity);
+
+
             }
 //
         }

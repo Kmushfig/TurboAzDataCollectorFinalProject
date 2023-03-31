@@ -20,7 +20,7 @@ public class DatasController {
     private final DatasService datasService;
 
     @GetMapping("turboazinfos")
-    public DatasEntity addNewEssentionalData() throws IOException {
+    public String addNewEssentionalData() throws IOException {
         return datasService.saveServiceCarsOfDatas();
     }
 

@@ -17,18 +17,13 @@ import java.io.IOException;
         private final ModelRepositoryy modelRepositoryy;
 
 
-    public ModelEntity saveServiceModelId() throws IOException {
+    public String saveServiceModelId() throws IOException {
 
         ModelDTO modelDTO = modelJsoup.jsoupModelId();
 
-        ModelEntity modelEntity = ModelEntity.builder()
-                .modelId(modelDTO.getModelId())
-                .modelName(modelDTO.getModelName())
-                .makeNumber(modelDTO.getMakeNumber())
-                .build();
 
         
-        return modelRepositoryy.save(modelEntity);
+        return "Problem solved";
     }
 
     String link = "https://turbo.az/autos?q[sort]=&q[make][]= {***}&q[model][]=&q[model][]={***}";

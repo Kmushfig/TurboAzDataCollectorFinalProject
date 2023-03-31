@@ -18,7 +18,7 @@ public class ModelsController {
     private final ModelService modelService;
 
     @GetMapping("turboazdata")
-    public ModelEntity addNewData() throws IOException {
+    public String addNewData() throws IOException {
         return modelService.saveServiceModelId();
     }
 
