@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class DatasDTO {
 
-    private ModelEntity model;
+    private ModelEntity modelId;
     private String makeAndModelName;
     private String productionYear;
     private String price;

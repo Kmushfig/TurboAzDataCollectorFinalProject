@@ -2,7 +2,7 @@ package com.finalproject.turboazdatacollector.jSoup;
 
 import com.finalproject.turboazdatacollector.dtoCars.ModelDTO;
 import com.finalproject.turboazdatacollector.entity.ModelEntity;
-import com.finalproject.turboazdatacollector.repository.ModelRepositoryy;
+import com.finalproject.turboazdatacollector.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class ModelJsoup {
 
-    private final ModelRepositoryy modelRepositoryy;
+    private final ModelRepository modelRepository;
 
     public ModelDTO jsoupModelId() throws IOException {
 
@@ -45,7 +45,7 @@ public class ModelJsoup {
 //          String modelId = carModel.val();
 //          String makeId = carModel.attr("class");
 
-            modelRepositoryy.save(modelEntity);
+            modelRepository.save(modelEntity);
         }
         return modelDTO;
     }

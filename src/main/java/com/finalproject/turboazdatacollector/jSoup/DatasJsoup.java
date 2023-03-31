@@ -4,7 +4,7 @@ import com.finalproject.turboazdatacollector.dtoCars.DatasDTO;
 import com.finalproject.turboazdatacollector.entity.DatasEntity;
 import com.finalproject.turboazdatacollector.entity.ModelEntity;
 import com.finalproject.turboazdatacollector.repository.DatasRepository;
-import com.finalproject.turboazdatacollector.repository.ModelRepositoryy;
+import com.finalproject.turboazdatacollector.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +21,7 @@ public class DatasJsoup {
     private final DatasRepository datasRepository;
 
     @Autowired
-    private ModelRepositoryy modelRepositoryy;
+    private ModelRepository modelRepository;
 
     public DatasDTO jsoupDatas() throws IOException {
 
@@ -38,9 +38,9 @@ public class DatasJsoup {
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
 
-                // modeli gətir - bmw, mercedes, sən girib baxırsan model table-də id-si neçədir
-                String modelText = "Bunun turbo az-dan götür";
-                ModelEntity modelEntity = modelRepositoryy.findByModeName(modelText);
+                // modeli gətir - bmw, mercedes, sən girib baxıram model table-də id-si neçədir
+                String modelText = "Bmw";
+                ModelEntity modelEntity = modelRepository.findByModelName(modelText);
 
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
@@ -52,19 +52,15 @@ public class DatasJsoup {
 
 //                datasOfCarsDTO.setMadelId();  ?????????
                 datasDTO.setMakeAndModelName(carName.text());
-                datasDTO.setModel(modelEntity);
+                datasDTO.setModelId(modelEntity);
                 datasDTO.setProductionYear(year);
                 datasDTO.setEngine(engine);
                 datasDTO.setOdometer(odoMetr);
                 datasDTO.setPrice("123123");
                 datasDTO.setDateTimeAndPlace(String.valueOf(dateTimeAndPlace));
 
-//                datasOfCarsDTO.setMakeAndModelName(product.getElementsByClass("products-i__name products-i__bottom-text").text());
-//                datasOfCarsDTO.setPrice((product.getElementsByClass("products-i__price products-i__bottom-text").text()));
-//                datasOfCarsDTO.setDateTimeAndPlace(product.getElementsByClass("products-i__datetime").text());
-
                 DatasEntity datasEntity = DatasEntity.builder()
-                        .model(datasDTO.getModel())
+                        .modelId(datasDTO.getModelId())
                         .makeAndModelName(datasDTO.getMakeAndModelName())
                         .productionYear(datasDTO.getProductionYear())
                         .engine(datasDTO.getEngine())

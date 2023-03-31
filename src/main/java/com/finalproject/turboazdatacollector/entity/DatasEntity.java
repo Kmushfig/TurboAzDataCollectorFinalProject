@@ -18,8 +18,8 @@ public class DatasEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "madel_id")
-    private ModelEntity model;
+    @JoinColumn(name = "model_id")
+    private ModelEntity modelId;
 
     private String makeId;
     private String makeAndModelName;

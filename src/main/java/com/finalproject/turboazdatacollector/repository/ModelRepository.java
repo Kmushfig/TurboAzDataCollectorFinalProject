@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface ModelRepositoryy extends JpaRepository <ModelEntity, String>{
+public interface ModelRepository extends JpaRepository <ModelEntity, String>{
     ArrayList<ModelEntity>findAllByModelName(String modelName);
-    ModelEntity findByModeName(String name);
+    ModelEntity findByModelName(String name);
 }

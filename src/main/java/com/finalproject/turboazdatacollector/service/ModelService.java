@@ -1,9 +1,8 @@
 package com.finalproject.turboazdatacollector.service;
 
 import com.finalproject.turboazdatacollector.dtoCars.ModelDTO;
-import com.finalproject.turboazdatacollector.entity.ModelEntity;
 import com.finalproject.turboazdatacollector.jSoup.ModelJsoup;
-import com.finalproject.turboazdatacollector.repository.ModelRepositoryy;
+import com.finalproject.turboazdatacollector.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.io.IOException;
     public class ModelService {
 
         private final ModelJsoup modelJsoup;
-        private final ModelRepositoryy modelRepositoryy;
+        private final ModelRepository modelRepository;
 
 
     public String saveServiceModelId() throws IOException {
