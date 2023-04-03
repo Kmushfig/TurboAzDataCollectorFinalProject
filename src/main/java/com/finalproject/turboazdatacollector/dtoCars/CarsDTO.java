@@ -1,12 +1,11 @@
 package com.finalproject.turboazdatacollector.dtoCars;
 
-import com.finalproject.turboazdatacollector.entity.ModelEntity;
 import lombok.Data;
 
 @Data
-public class DatasDTO {
+public class CarsDTO {
 
-    private ModelEntity modelId;
+    private String modelId;
     private String makeAndModelName;
     private String productionYear;
     private String price;

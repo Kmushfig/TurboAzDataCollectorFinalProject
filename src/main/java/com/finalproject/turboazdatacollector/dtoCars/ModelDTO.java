@@ -8,5 +8,6 @@ public class ModelDTO {
     private String modelId;
     private String modelName;
     private int makeNumber;
+    private String makeName;
 
 }

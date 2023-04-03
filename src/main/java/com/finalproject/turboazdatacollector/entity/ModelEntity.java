@@ -5,7 +5,7 @@ import lombok.*;
 
 @Entity
 @Data
-@Table (name = "model_names")
+@Table (name = "Turbo model names")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,6 +17,7 @@ public class ModelEntity {
 
     private String modelId;
     private String modelName;
+    private String makeName;
     private int makeNumber;
 
 }

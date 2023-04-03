@@ -28,17 +28,20 @@ public class ModelJsoup {
         Document doc = Jsoup.connect("https://turbo.az/").get();
 
         Elements options = doc.getElementsByClass("js-search-select-model").select("option");
+//        Elements options2 = doc.getElementsByClass("select optional form-control js-search-select-make").select("option");
 
         for (Element carModel : options) {
 
             modelDTO.setModelName(carModel.text());
             modelDTO.setModelId(carModel.val());
             modelDTO.setMakeNumber(Integer.parseInt(carModel.attr("class")));
+            modelDTO.setMakeName(carModel.attr("option"));
 
             ModelEntity modelEntity = ModelEntity.builder()
                     .modelId(modelDTO.getModelId())
                     .modelName(modelDTO.getModelName())
                     .makeNumber(modelDTO.getMakeNumber())
+                    .makeName(modelDTO.getMakeName())
                     .build();
 
 //          String modelName = carModel.text();

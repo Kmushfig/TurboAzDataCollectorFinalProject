@@ -4,23 +4,18 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "turbo_cars")
+@Table(name = "turbo cars")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DatasEntity {
+public class CarsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
-    private ModelEntity modelId;
-
+    private String modelId;
     private String makeId;
     private String makeAndModelName;
     private String productionYear;

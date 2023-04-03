@@ -1,5 +1,4 @@
 package com.finalproject.turboazdatacollector.service;
-
 import com.finalproject.turboazdatacollector.dtoCars.ModelDTO;
 import com.finalproject.turboazdatacollector.jSoup.ModelJsoup;
 import com.finalproject.turboazdatacollector.repository.ModelRepository;
@@ -19,11 +18,9 @@ import java.io.IOException;
     public String saveServiceModelId() throws IOException {
 
         ModelDTO modelDTO = modelJsoup.jsoupModelId();
-
-
-        
         return "Problem solved";
     }
 
-    String link = "https://turbo.az/autos?q[sort]=&q[make][]= {***}&q[model][]=&q[model][]={***}";
+//    String link = "https://turbo.az/autos?q[sort]=&q[make][]=" + a + "&q[model][]=&q[model][]=" + b;
+
 }
