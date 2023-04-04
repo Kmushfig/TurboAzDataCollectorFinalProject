@@ -8,6 +8,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface ModelRepository extends JpaRepository <ModelEntity, String>{
-    ArrayList<ModelEntity>findAllByModelName(String modelName);
-    ModelEntity findByModelName(String name);
+//    ArrayList<ModelEntity>findAllByModelName(String modelName);
+//    ModelEntity findByModelName(String name);
 }

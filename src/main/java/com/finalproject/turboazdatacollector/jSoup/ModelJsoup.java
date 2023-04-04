@@ -27,32 +27,23 @@ public class ModelJsoup {
 
         Document doc = Jsoup.connect("https://turbo.az/").get();
 
-        Elements options = doc.getElementsByClass("js-search-select-model").select("option");
-//        Elements options2 = doc.getElementsByClass("select optional form-control js-search-select-make").select("option");
+        Elements model = doc.getElementsByClass("js-search-select-model").select("option");
 
-        for (Element carModel : options) {
+        for (Element carModel : model) {
 
             modelDTO.setModelName(carModel.text());
             modelDTO.setModelId(carModel.val());
-            modelDTO.setMakeNumber(Integer.parseInt(carModel.attr("class")));
-            modelDTO.setMakeName(carModel.attr("option"));
+            modelDTO.setMakeId(carModel.attr("class"));
 
             ModelEntity modelEntity = ModelEntity.builder()
                     .modelId(modelDTO.getModelId())
                     .modelName(modelDTO.getModelName())
-                    .makeNumber(modelDTO.getMakeNumber())
-                    .makeName(modelDTO.getMakeName())
+                    .makeId(modelDTO.getMakeId())
                     .build();
-
-//          String modelName = carModel.text();
-//          String modelId = carModel.val();
-//          String makeId = carModel.attr("class");
-
             modelRepository.save(modelEntity);
         }
+
+
         return modelDTO;
     }
-
-
-
 }

@@ -4,7 +4,6 @@ import com.finalproject.turboazdatacollector.jSoup.ModelJsoup;
 import com.finalproject.turboazdatacollector.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 
 @Service

@@ -1,22 +1,23 @@
 package com.finalproject.turboazdatacollector.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table (name = "Turbo models")
+@Table(name = "Turbo makes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ModelEntity {
+public class MakesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String modelId;
-    private String modelName;
+    private String makeName;
     private String makeId;
-
 }

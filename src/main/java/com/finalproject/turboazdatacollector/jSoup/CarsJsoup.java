@@ -36,13 +36,13 @@ public class CarsJsoup {
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
                 String[] atribittooSplittoo = attributes.get(0).text().split(", ");
-                String year = atribittooSplittoo[0];
+                String productionYear = atribittooSplittoo[0];
                 String engine = atribittooSplittoo[1];
                 String odoMetr = atribittooSplittoo[2];
 
                 carsDTO.setModelId(carsDTO.getModelId());
                 carsDTO.setMakeAndModelName(carName.text());
-                carsDTO.setProductionYear(year);
+                carsDTO.setProductionYear(productionYear);
                 carsDTO.setEngine(engine);
                 carsDTO.setOdometer(odoMetr);
                 carsDTO.setPrice((price).text());
