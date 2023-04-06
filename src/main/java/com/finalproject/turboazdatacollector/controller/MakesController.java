@@ -13,7 +13,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class MakesController {
     private final MakesService makesService;
-    @GetMapping("/makes")
+    @GetMapping("makes")
     public String addNewMakes() throws IOException {
         return makesService.saveServiceMakes();
     }
