@@ -1,11 +1,13 @@
 package com.finalproject.turboazdatacollector.entity;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Data
-@Table (name = "Turbo models")
+@Table(name = "Turbo models")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
