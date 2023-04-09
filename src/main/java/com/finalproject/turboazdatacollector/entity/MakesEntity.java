@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Component
 @Data
-@Table(name = "Turbo makes")
+@Table(name = "Turbo_makes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

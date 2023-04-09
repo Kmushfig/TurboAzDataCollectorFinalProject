@@ -40,7 +40,7 @@ public class CarsJsoup {
                 String engine = atribittooSplittoo[1];
                 String odoMetr = atribittooSplittoo[2];
 
-                carsDTO.setModelId(carsDTO.getModelId());
+//                carsDTO.setModelId(carsDTO.getModelId());
                 carsDTO.setMakeAndModelName(carName.text());
                 carsDTO.setProductionYear(productionYear);
                 carsDTO.setEngine(engine);
@@ -49,7 +49,7 @@ public class CarsJsoup {
                 carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
 
                 CarsEntity carsEntity = CarsEntity.builder()
-                        .modelId(carsDTO.getModelId())
+//                        .modelId(carsDTO.getModelId())
                         .makeAndModelName(carsDTO.getMakeAndModelName())
                         .productionYear(carsDTO.getProductionYear())
                         .engine(carsDTO.getEngine())

@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Turbo cars")
+@Table(name = "Turbo_cars")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +17,8 @@ public class CarsEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String modelId;
-    private String makeId;
+//    private String modelId;
+//    private String makeId;
     private String makeAndModelName;
     private String productionYear;
     private String price;
