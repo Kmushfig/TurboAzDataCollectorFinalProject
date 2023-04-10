@@ -29,6 +29,8 @@ public class CarsJsoup {
         HashMap<String, String> carIds = new HashMap<>();
         ArrayList<ModelEntity> makeIdFromDB = modelRepository.findAllByMakeId();
         ArrayList<ModelEntity> modelIdFromDB = modelRepository.findAllByModelId();
+        String link1 = "https://turbo.az/autos?q[sort]=&q[make][]=";
+        String link2 = "&q[model][]=&q[model][]=";
         for (int i = 0; i < makeIdFromDB.size(); i++) {
             for(int j = 0; j< modelIdFromDB.size();j++){
 
