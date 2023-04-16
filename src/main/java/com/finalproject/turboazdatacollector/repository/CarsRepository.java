@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarsRepository extends JpaRepository<CarsEntity, String> {
-
-//  List<CarsEntity> findAllByModelId(Long id);
 }

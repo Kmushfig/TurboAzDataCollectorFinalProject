@@ -10,48 +10,44 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CarsJsoup {
     private final CarsRepository carsRepository;
     private final ModelRepository modelRepository;
-    public CarsDTO jsoupDatas() throws IOException {
 
+    public void jsoupDatas() throws IOException {
 
-        CarsDTO carsDTO = new CarsDTO();
-        HashMap<String, String> carIds = new HashMap<>();
-        ArrayList<ModelEntity> makeIdFromDB = modelRepository.findAllByMakeId();
-        ArrayList<ModelEntity> modelIdFromDB = modelRepository.findAllByModelId();
-        String link1 = "https://turbo.az/autos?q[sort]=&q[make][]=";
-        String link2 = "&q[model][]=&q[model][]=";
-        for (int i = 0; i < makeIdFromDB.size(); i++) {
-            for(int j = 0; j< modelIdFromDB.size();j++){
+        List<ModelEntity> all = modelRepository.findAll();
 
-            }
-        }
-            Document doc = Jsoup.connect("https://turbo.az/autos?q%5Bsort%5D=&q%5Bmake%5D%5B%5D=3&q%5Bmodel%5D%5B%5D=&q%5Bmodel%5D%5B%5D=35").get();
+        for (int i = 10; i > 0; i--) {
+
+            for (ModelEntity e : all) {
+            String link = "https://turbo.az/autos?q[sort]=&q[make][]=" + e.getMakeId() + "&q[model][]=&q[model][]=" + e.getModelId();
+
+            Document doc = Jsoup.connect(link).get();
             Elements productName = doc.getElementsByClass("products-i");
 
-            for (Element product : productName) {
+                for (Element product : productName) {
 
+                CarsDTO carsDTO = new CarsDTO();
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
-                String[] atribittooSplittoo = attributes.get(0).text().split(", ");
-                String productionYear = atribittooSplittoo[0];
-                String engine = atribittooSplittoo[1];
-                String odoMetr = atribittooSplittoo[2];
+                String[] split = attributes.get(0).text().split(", ");
+                String productionYear = split[0];
+                String engine = split[1];
+                String odoMetr = split[2];
 
-//                carsDTO.setModelId(carsDTO.getModelId());
                 carsDTO.setMakeAndModelName(carName.text());
                 carsDTO.setProductionYear(productionYear);
                 carsDTO.setEngine(engine);
@@ -60,7 +56,6 @@ public class CarsJsoup {
                 carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
 
                 CarsEntity carsEntity = CarsEntity.builder()
-//                        .modelId(carsDTO.getModelId())
                         .makeAndModelName(carsDTO.getMakeAndModelName())
                         .productionYear(carsDTO.getProductionYear())
                         .engine(carsDTO.getEngine())
@@ -72,8 +67,8 @@ public class CarsJsoup {
                 carsRepository.save(carsEntity);
 
 
+                }
             }
-        return carsDTO;
+        }
     }
-
 }

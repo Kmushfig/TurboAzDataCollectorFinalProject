@@ -12,13 +12,12 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class CarsService {
-    private final CarsRepository carsRepository;
     private final CarsJsoup carsJsoup;
 
 
     public String  saveServiceCarsOfDatas() throws IOException {
 
-        CarsDTO carsDTO = carsJsoup.jsoupDatas();
+        carsJsoup.jsoupDatas();
 
         return "Problem solved";
     }
