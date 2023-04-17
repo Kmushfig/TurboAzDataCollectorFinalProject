@@ -2,6 +2,7 @@ package com.finalproject.turboazdatacollector.entity;
 
 //import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -11,15 +12,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Component
 public class CarsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
 //    private String modelId;
 //    private String makeId;
-    private String makeAndModelName;
+    private String makeModelName;
     private String productionYear;
     private String price;
     private String odometer;
