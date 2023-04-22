@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface MakesRepository extends JpaRepository <MakesEntity, String> {
-
+    ArrayList<MakesEntity> findAllByMakeName(String dtoMakeName);
 }

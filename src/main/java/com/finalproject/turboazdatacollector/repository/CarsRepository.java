@@ -9,4 +9,5 @@ import java.util.ArrayList;
 @Repository
 public interface CarsRepository extends JpaRepository<CarsEntity, String> {
     ArrayList<CarsEntity> findAllBymakeModelName(String dtoName);
+    ArrayList<CarsEntity> findAll();
 }

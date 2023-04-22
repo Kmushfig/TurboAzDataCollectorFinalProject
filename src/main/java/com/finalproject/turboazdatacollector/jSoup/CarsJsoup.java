@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +26,21 @@ public class CarsJsoup {
     private final CarsRepository carsRepository;
     private final ModelRepository modelRepository;
 
+    @Scheduled(fixedRate = 3000)
     public void jsoupDatas() throws IOException {
-//    ArrayList<Integer> id= new ArrayList<>();
+        ArrayList<ModelEntity> all = (ArrayList<ModelEntity>) modelRepository.findAll();
 
 
-//        for (int i = 0; i < 2; i++) {
-            ArrayList<ModelEntity> all = (ArrayList<ModelEntity>) modelRepository.findAll();
+        for (int i = 0; i < 3; i++) {
 
-            for (ModelEntity e : all) {
+            ModelEntity e = all.get(i);
+//            for (ModelEntity e : all) {
             String link = "https://turbo.az/autos?q[sort]=&q[make][]=" + e.getMakeId() + "&q[model][]=&q[model][]=" + e.getModelId();
 
             Document doc = Jsoup.connect(link).get();
             Elements productName = doc.getElementsByClass("products-i");
 
-                for (Element product : productName) {
+            for (Element product : productName) {
 
                 CarsDTO carsDTO = new CarsDTO();
 
@@ -46,16 +48,16 @@ public class CarsJsoup {
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
-                if (!attributes.isEmpty() ){
+                if (!attributes.isEmpty()) {
 
-                String[] split = attributes.get(0).text().split(", ");
-                String productionYear = split[0];
-                String engine = split[1];
-                String odoMetr = split[2];
+                    String[] split = attributes.get(0).text().split(", ");
+                    String productionYear = split[0];
+                    String engine = split[1];
+                    String odoMetr = split[2];
 
-                carsDTO.setProductionYear(productionYear);
-                carsDTO.setEngine(engine);
-                carsDTO.setOdometer(odoMetr);
+                    carsDTO.setProductionYear(productionYear);
+                    carsDTO.setEngine(engine);
+                    carsDTO.setOdometer(odoMetr);
                 }
                 carsDTO.setMakeModelName(carName.text());
                 carsDTO.setPrice((price).text());
@@ -70,10 +72,14 @@ public class CarsJsoup {
                         .dateTimeAndPlace(carsDTO.getDateTimeAndPlace())
                         .build();
 
-                carsRepository.save(carsEntity);
+                if (carsEntity.getEngine() != null || carsEntity.getOdometer() != null ||
+                        carsEntity.getProductionYear() != null){
+
+            carsRepository.save(carsEntity);
 
 
                 }
             }
         }
     }
+}

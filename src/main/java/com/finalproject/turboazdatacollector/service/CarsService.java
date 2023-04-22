@@ -1,17 +1,14 @@
 package com.finalproject.turboazdatacollector.service;
 
-import com.finalproject.turboazdatacollector.dtoCars.FilterDTO;
+import com.finalproject.turboazdatacollector.dtoCars.FilterMakeModelDTO;
 import com.finalproject.turboazdatacollector.entity.CarsEntity;
 import com.finalproject.turboazdatacollector.jSoup.CarsJsoup;
 import com.finalproject.turboazdatacollector.repository.CarsRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Objects;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,17 +27,15 @@ public class CarsService {
         return "Problem solved";
     }
 
-    public List<CarsEntity> filterService(FilterDTO dtoName){
-        List<CarsEntity> all = repository.findAllBymakeModelName(dtoName.getFilterName());
+    public List<CarsEntity> filterMakeModelNameService(FilterMakeModelDTO dtoMakeModelName){
+        List<CarsEntity> all = repository.findAllBymakeModelName(dtoMakeModelName.getFilterMakeModelName());
 
-
-
-
-          all.stream().filter(str -> str.equals(dtoName)).collect(Collectors.toList());
+          all.stream().filter(str -> str.equals(dtoMakeModelName)).collect(Collectors.toList());
             return all;
-
-
         }
+    public  List<CarsEntity> getAll()  {
+        return repository.findAll();
+    }
 
     }
 

@@ -3,7 +3,7 @@ package com.finalproject.turboazdatacollector.dtoCars;
 import lombok.Data;
 
 @Data
-public class FilterDTO {
-    private String filterName;
+public class FilterMakeModelDTO {
+    private String filterMakeModelName;
 
 }
