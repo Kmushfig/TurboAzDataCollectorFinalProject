@@ -59,13 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/v3/api-docs/**",
 			"/swagger-ui/**",
 			"/signup",
-			"/signin",
-			"/turbo/makes",
-			"/turbo/models",
-			"/turbo/cars",
-			"/turbo/filterMakeName",
-			"/turbo/get-all",
-			"/turbo/filterMakeModelName"
+			"/signin"
 	};
 
 	@Override

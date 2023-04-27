@@ -11,6 +11,7 @@ public class CarsDTO {
     private String odometer;
     private String engine;
     private String dateTimeAndPlace;
+    private String announceId;
 
 
 }

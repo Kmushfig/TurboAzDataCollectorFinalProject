@@ -41,13 +41,16 @@ public class CarsJsoup {
             Elements productName = doc.getElementsByClass("products-i");
 
             for (Element product : productName) {
-
+                Elements href = product.getElementsByClass("href");
+                String linkAnnounce = href.attr("abs.href");
+                Document document = Jsoup.connect(linkAnnounce).get();
                 CarsDTO carsDTO = new CarsDTO();
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
+                Elements announceId = product.getElementsByClass("product-actions__id");
                 if (!attributes.isEmpty()) {
 
                     String[] split = attributes.get(0).text().split(", ");
