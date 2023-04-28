@@ -31,7 +31,7 @@ public class CarsJsoup {
         ArrayList<ModelEntity> all = (ArrayList<ModelEntity>) modelRepository.findAll();
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
 
             ModelEntity e = all.get(i);
 //            for (ModelEntity e : all) {
@@ -41,30 +41,43 @@ public class CarsJsoup {
             Elements productName = doc.getElementsByClass("products-i");
 
             for (Element product : productName) {
-                Elements href = product.getElementsByClass("href");
-                String linkAnnounce = href.attr("abs.href");
-                Document document = Jsoup.connect(linkAnnounce).get();
                 CarsDTO carsDTO = new CarsDTO();
+
+                Elements href = product.getElementsByAttribute("href");
+                String link1=href.attr("abs:href");
+                Document document = Jsoup.connect(link1).get();
+
+
+                //Elanın nömrəsi: 7043450
+
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
                 Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
-                Elements announceId = product.getElementsByClass("product-actions__id");
+                Elements idNumber = document.getElementsByClass("product-actions__id");
+
+                String[] idNumberFinal = idNumber.text().split(" ");
+                String announceIdd = idNumberFinal[2];
+
                 if (!attributes.isEmpty()) {
 
                     String[] split = attributes.get(0).text().split(", ");
-                    String productionYear = split[0];
-                    String engine = split[1];
-                    String odoMetr = split[2];
+                    Long productionYear = Long.valueOf(split[0]);
+                    String enginesp = split[1];
+                    String engine = enginesp.replaceAll(" L", "");
+                    String odoMetrsp = split[2];
+                    String odoMetr1 = odoMetrsp.replaceAll(" km", "");
+                    String odoMetr = odoMetr1.replaceAll(" ", "");
 
-                    carsDTO.setProductionYear(productionYear);
-                    carsDTO.setEngine(engine);
-                    carsDTO.setOdometer(odoMetr);
+                    carsDTO.setProductionYear(String.valueOf(productionYear));
+                    carsDTO.setEngine(Double.valueOf(engine));
+                    carsDTO.setOdometer(Long.valueOf(odoMetr));
                 }
                 carsDTO.setMakeModelName(carName.text());
-                carsDTO.setPrice((price).text());
+                carsDTO.setPrice(price.text());
                 carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
+                carsDTO.setAnnounceId(announceIdd);
 
                 CarsEntity carsEntity = CarsEntity.builder()
                         .makeModelName(carsDTO.getMakeModelName())
@@ -73,14 +86,16 @@ public class CarsJsoup {
                         .odometer(carsDTO.getOdometer())
                         .price(carsDTO.getPrice())
                         .dateTimeAndPlace(carsDTO.getDateTimeAndPlace())
+                        .announceId(carsDTO.getAnnounceId())
                         .build();
 
                 if (carsEntity.getEngine() != null || carsEntity.getOdometer() != null ||
                         carsEntity.getProductionYear() != null){
 
-            carsRepository.save(carsEntity);
+                if (carsEntity.getAnnounceId() == null) {
+                    carsRepository.save(carsEntity);
 
-
+                }
                 }
             }
         }

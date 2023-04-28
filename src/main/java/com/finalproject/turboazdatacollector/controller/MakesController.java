@@ -21,7 +21,7 @@ public class MakesController {
         return makesService.saveServiceMakes();
     }
 
-    @PostMapping("filterMakeName")
+    @PostMapping("filter-make-name")
     public List<MakesEntity> getFilterMakeNameData(@RequestBody FilterMakeNameDTO dtoMakeName){
         return makesService.filterMakeNameService(dtoMakeName);
 

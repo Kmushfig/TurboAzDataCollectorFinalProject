@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Turbo_cars")
+@Table(name = "Turbonewcars")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,13 +19,11 @@ public class CarsEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    private String modelId;
-//    private String makeId;
     private String makeModelName;
     private String productionYear;
     private String price;
-    private String odometer;
-    private String engine;
+    private Long odometer;
+    private Double engine;
     private String dateTimeAndPlace;
     private String announceId;
 }

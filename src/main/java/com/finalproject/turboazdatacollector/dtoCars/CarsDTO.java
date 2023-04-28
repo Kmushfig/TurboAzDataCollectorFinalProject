@@ -8,8 +8,8 @@ public class CarsDTO {
     private String makeModelName;
     private String productionYear;
     private String price;
-    private String odometer;
-    private String engine;
+    private Long odometer;
+    private Double engine;
     private String dateTimeAndPlace;
     private String announceId;
 
