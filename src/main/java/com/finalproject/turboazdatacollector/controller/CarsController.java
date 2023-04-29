@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class CarsController {
     }
 
     @PostMapping("filter-make-model-name")
-    public List<CarsEntity> getFilterData(@RequestBody FilterMakeModelDTO dtoName){
+    public List<CarsEntity> getFilterData(@Valid @RequestBody FilterMakeModelDTO dtoName){
         return carsService.filterMakeModelNameService(dtoName);
     }
     @GetMapping("/get-all")
@@ -34,19 +35,19 @@ public class CarsController {
     }
 
     @PostMapping("/filter-between-price")
-    public List<CarsEntity> getAllBetweenPrice(@RequestBody FilterBetweenPriceDTO dtoPrice){
+    public List<CarsEntity> getAllBetweenPrice(@Valid @RequestBody FilterBetweenPriceDTO dtoPrice){
         return carsService.getElementsByPrice(dtoPrice);
     }
     @PostMapping("/filter-between-odometer")
-    public List<CarsEntity> getAllBetweenOdometer(@RequestBody FilterBetweenOdometerDTO dtoOdometerKm){
+    public List<CarsEntity> getAllBetweenOdometer(@Valid @RequestBody FilterBetweenOdometerDTO dtoOdometerKm){
         return carsService.getElementsByOdometer(dtoOdometerKm);
     }
     @PostMapping("/filter-between-year")
-    public List<CarsEntity> getAllBetweenYear(@RequestBody FilterYearDTO dtoYearyy){
+    public List<CarsEntity> getAllBetweenYear(@Valid @RequestBody FilterBetweenYearDTO dtoYearyy){
         return carsService.getElementsByYear(dtoYearyy);
     }
     @PostMapping("/filter-between-engine")
-    public List<CarsEntity> getAllBetweenEngine(@RequestBody FilterEngineDTO dtoEngine){
+    public List<CarsEntity> getAllBetweenEngine(@Valid @RequestBody FilterBetweenEngineDTO dtoEngine){
         return carsService.getElementsByEngine(dtoEngine);
     }
 

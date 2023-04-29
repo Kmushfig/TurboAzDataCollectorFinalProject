@@ -33,7 +33,7 @@ public class CarsJsoup {
         ArrayList<ModelEntity> all = (ArrayList<ModelEntity>) modelRepository.findAll();
 
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 5; i < 6; i++) {
 
             ModelEntity e = all.get(i);
 //            for (ModelEntity e : all) {
@@ -46,7 +46,7 @@ public class CarsJsoup {
                 CarsDTO carsDTO = new CarsDTO();
 
                 Elements href = product.getElementsByAttribute("href");
-                String link1=href.attr("abs:href");
+                String link1 = href.attr("abs:href");
                 Document document = Jsoup.connect(link1).get();
 
 
@@ -74,39 +74,76 @@ public class CarsJsoup {
                     carsDTO.setOdometer(Long.valueOf(odoMetr));
                 }
 
-                String[] splitsss = prices.split(" ");
-                String price = splitsss[0];
-//                DecimalFormat format = new DecimalFormat("#.##");
-//                Double pricesss = Double.parseDouble(format.format(Double.parseDouble(price)));
-                Double price1 = Double.parseDouble(price);
-                boolean usd = prices.contains("USD");
+                String splitsss = prices.replaceAll(" ", "");
+                String priceString = splitsss.replaceAll("\\D", "");
+                Double priceDouble = null;
 
-                if(usd){
-                    price1 = price1 * 1.7;
-                }
-                carsDTO.setPrice(price1);
-                carsDTO.setMakeModelName(carName.text());
-                carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
-                carsDTO.setAnnounceId(idNumber.text());
+                try {
+                    priceDouble = Double.parseDouble(priceString);
+                }catch (Exception r){
+                priceDouble=null;
+                    }
 
 
-                CarsEntity carsEntity = CarsEntity.builder()
-                        .makeModelName(carsDTO.getMakeModelName())
-                        .productionYear(carsDTO.getProductionYear())
-                        .engine(carsDTO.getEngine())
-                        .odometer(carsDTO.getOdometer())
-                        .price(carsDTO.getPrice())
-                        .dateTimeAndPlace(carsDTO.getDateTimeAndPlace())
-                        .announceId(carsDTO.getAnnounceId())
-                        .build();
+//                System.out.println(priceDouble);
 
-                if (carsEntity.getEngine() != null || carsEntity.getOdometer() != null ||
-                        carsEntity.getProductionYear() != null){
 
-                if (carsEntity.getAnnounceId() == null) {
+                if (priceDouble != null && splitsss.contains("$")) {
+                    priceDouble = priceDouble * 1.7;
+                    carsDTO.setPrice(priceDouble);
+                } else if (priceDouble != null && splitsss.contains("AZN")) {
+                    carsDTO.setPrice(priceDouble);
+
+
+
+
+//                System.out.println(a);?
+//                System.out.println(splitsss);
+//                String qiynet = splitsss.substring(0,splitsss.length()-3);
+
+//                System.out.println(qiynet);
+
+
+//                String price = splitsss[0];
+//                String pricePart2= splitsss[1];
+//                String lastPrice = price+pricePart2;
+//                System.out.println(lastPrice);
+////                DecimalFormat format = new DecimalFormat("#.##");
+////                Double pricesss = Double.parseDouble(format.format(Double.parseDouble(price)));
+//                Double lastPrice11 = Double.parseDouble(lastPrice);
+//                boolean usd = prices.contains("USD");
+//
+//                if(usd){
+//                    lastPrice11 = lastPrice11 * 1.7;
+//                }
+////                System.out.println(price1);
+//                carsDTO.setPrice(lastPrice11);
+//                System.out.println(carsDTO.getPrice());
+                    carsDTO.setMakeModelName(carName.text());
+                    carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
+                    carsDTO.setAnnounceId(idNumber.text());
+
+
+                    CarsEntity carsEntity = CarsEntity.builder()
+                            .makeModelName(carsDTO.getMakeModelName())
+                            .productionYear(carsDTO.getProductionYear())
+                            .engine(carsDTO.getEngine())
+                            .odometer(carsDTO.getOdometer())
+                            .price(carsDTO.getPrice())
+                            .dateTimeAndPlace(carsDTO.getDateTimeAndPlace())
+                            .announceId(carsDTO.getAnnounceId())
+                            .build();
+
                     carsRepository.save(carsEntity);
 
-                }
+                    if (carsEntity.getEngine() != null || carsEntity.getOdometer() != null ||
+                            carsEntity.getProductionYear() != null) {
+
+                        if (carsEntity.getAnnounceId() == null) {
+                            carsRepository.save(carsEntity);
+
+                        }
+                    }
                 }
             }
         }

@@ -6,10 +6,14 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class FilterMakeModelDTO {
+public class FilterBetweenYearDTO {
 
     @NotNull(message = "bu yeri bos qoymaq olmaz")
     @Min(value = 0, message = "Zehmet olmasa duzgun deyer daxil edin")
-    private String filterMakeModelName;
+    private Long minProductionYear;
 
+    @NotNull(message = "bu yeri bos qoymaq olmaz")
+    @Min(value = 0, message = "Zehmet olmasa duzgun deyer daxil edin")
+    private Long maxProductionYear;
 }
+

@@ -14,9 +14,11 @@ public class SignUpDto {
     @Email(message = "emaili duzgun daxil edin")
     private String email;
     @NotBlank(message = "/Zehmet olmasa passwordu duzgun daxil edin.")
-//    @Size(min = )
+    @Size(min = 8, max = 20, message = "password length can be minimum 8 and maximum 20")
     private String password;
 
+    @NotBlank(message = "/Zehmet olmasa passwordu duzgun daxil edin.")
+    @Size(min = 4, max = 20, message = "role length can be minimum 8 and maximum 20")
     private String role;
 
 

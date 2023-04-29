@@ -6,10 +6,13 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class FilterMakeModelDTO {
+public class FilterBetweenEngineDTO {
 
     @NotNull(message = "bu yeri bos qoymaq olmaz")
     @Min(value = 0, message = "Zehmet olmasa duzgun deyer daxil edin")
-    private String filterMakeModelName;
+    private Double minEngine;
 
+    @NotNull(message = "bu yeri bos qoymaq olmaz")
+    @Min(value = 0, message = "Zehmet olmasa duzgun deyer daxil edin")
+    private Double maxEngine;
 }

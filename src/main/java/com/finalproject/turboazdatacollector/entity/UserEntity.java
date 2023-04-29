@@ -22,17 +22,17 @@ public class UserEntity {
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    @Email(message ="Email length can be minimum 8 and maximum 20" )
-    @Size(min = 8, max = 20 ,message = "Email length can be minimum 8 and maximum 20")
+//    @NotNull
+//    @Email(message ="Email length can be minimum 8 and maximum 20" )
+
     private String email;
 
-    @NotNull
-    @Size(min = 8,max = 20 ,message = "Password length can be minimum 8 and maximum 20")
+//    @NotNull
+//    @Size(min = 8,max = 20 ,message = "Password length can be minimum 8 and maximum 20")
     private String password;
 
-    @NotNull
-    @Size(min = 8,max = 20 ,message = "Role length can be minimum 8 and maximum 20")
+//    @NotNull
+//    @Size(min = 4,max = 20 ,message = "Role length can be minimum 8 and maximum 20")
     private String role;
 
 }
