@@ -2,7 +2,6 @@ package com.finalproject.turboazdatacollector.service;
 
 import com.finalproject.turboazdatacollector.dtoCars.*;
 import com.finalproject.turboazdatacollector.entity.CarsEntity;
-import com.finalproject.turboazdatacollector.jSoup.CarsJsoup;
 import com.finalproject.turboazdatacollector.repository.CarsRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -43,7 +42,7 @@ public class CarsService {
         return repository.findAllByOdometerBetween(dtoOdometer.getMinKm(), dtoOdometer.getMaxKm());
     }
     public List<CarsEntity> getElementsByYear(FilterYearDTO dtoProductionYear){
-        return repository.findAllByYearBetween(dtoProductionYear.getMinProductionYear(), dtoProductionYear.getMaxProductionYear());
+        return repository.findAllByProductionYearBetween(dtoProductionYear.getMinProductionYear(), dtoProductionYear.getMaxProductionYear());
     }
     public List<CarsEntity> getElementsByEngine(FilterEngineDTO dtoEngineSize){
         return repository.findAllByEngineBetween(dtoEngineSize.getMinEngine(), dtoEngineSize.getMaxEngine());

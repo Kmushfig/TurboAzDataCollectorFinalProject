@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FilterBetweenPriceDTO {
-    private Long minPrice;
-    private Long maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
 }

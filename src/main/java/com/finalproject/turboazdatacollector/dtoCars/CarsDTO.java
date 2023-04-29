@@ -6,8 +6,8 @@ import lombok.Data;
 public class CarsDTO {
 
     private String makeModelName;
-    private String productionYear;
-    private String price;
+    private Long productionYear;
+    private Double price;
     private Long odometer;
     private Double engine;
     private String dateTimeAndPlace;

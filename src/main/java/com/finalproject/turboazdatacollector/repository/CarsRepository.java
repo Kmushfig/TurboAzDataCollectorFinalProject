@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public interface CarsRepository extends JpaRepository<CarsEntity, String> {
     ArrayList<CarsEntity> findAllBymakeModelName(String dtoName);
     ArrayList<CarsEntity> findAll();
-    ArrayList<CarsEntity> findAllByPriceBetween(Long minPrice, Long maxPrice);
+    ArrayList<CarsEntity> findAllByPriceBetween(Double minPrice, Double maxPrice);
     ArrayList<CarsEntity> findAllByOdometerBetween (Long minKm, Long maxKm);
-    ArrayList<CarsEntity> findAllByYearBetween (Long minYear, Long mazYear);
+    ArrayList<CarsEntity> findAllByProductionYearBetween (Long minYear, Long mazYear);
 
     ArrayList<CarsEntity> findAllByEngineBetween (Double minEngine, Double maxEngine);
 

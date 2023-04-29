@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,13 +54,10 @@ public class CarsJsoup {
 
 
                 Elements carName = product.getElementsByClass("products-i__name products-i__bottom-text");
-                Elements price = product.getElementsByClass("products-i__price products-i__bottom-text");
+                String prices = product.getElementsByClass("products-i__price products-i__bottom-text").text();
                 Elements dateTimeAndPlace = product.getElementsByClass("products-i__datetime");
                 Elements attributes = product.getElementsByClass("products-i__attributes products-i__bottom-text");
                 Elements idNumber = document.getElementsByClass("product-actions__id");
-
-                String[] idNumberFinal = idNumber.text().split(" ");
-                String announceIdd = idNumberFinal[2];
 
                 if (!attributes.isEmpty()) {
 
@@ -70,14 +69,26 @@ public class CarsJsoup {
                     String odoMetr1 = odoMetrsp.replaceAll(" km", "");
                     String odoMetr = odoMetr1.replaceAll(" ", "");
 
-                    carsDTO.setProductionYear(String.valueOf(productionYear));
+                    carsDTO.setProductionYear(productionYear);
                     carsDTO.setEngine(Double.valueOf(engine));
                     carsDTO.setOdometer(Long.valueOf(odoMetr));
                 }
+
+                String[] splitsss = prices.split(" ");
+                String price = splitsss[0];
+//                DecimalFormat format = new DecimalFormat("#.##");
+//                Double pricesss = Double.parseDouble(format.format(Double.parseDouble(price)));
+                Double price1 = Double.parseDouble(price);
+                boolean usd = prices.contains("USD");
+
+                if(usd){
+                    price1 = price1 * 1.7;
+                }
+                carsDTO.setPrice(price1);
                 carsDTO.setMakeModelName(carName.text());
-                carsDTO.setPrice(price.text());
                 carsDTO.setDateTimeAndPlace((dateTimeAndPlace).text());
-                carsDTO.setAnnounceId(announceIdd);
+                carsDTO.setAnnounceId(idNumber.text());
+
 
                 CarsEntity carsEntity = CarsEntity.builder()
                         .makeModelName(carsDTO.getMakeModelName())
